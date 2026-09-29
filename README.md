@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Auto Feed & Ads</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background: #0f172a; color: white; padding: 20px; }
+        
+        header { text-align: center; margin-bottom: 25px; }
+        header h1 { color: #38bdf8; }
+
+        .banner-ad { background: linear-gradient(90deg, #f59e0b, #ef4444); color: white; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; margin-bottom: 20px; text-decoration: none; display: block; }
+
+        .feed-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .card { background: #1e293b; border-radius: 12px; padding: 15px; border: 1px solid #334155; }
+        .card h3 { font-size: 1.1rem; margin-bottom: 10px; color: #f1f5f9; }
+        
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; margin-bottom: 10px; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        .auto-product-btn { display: block; width: 100%; background: #22c55e; color: white; text-align: center; padding: 10px; border-radius: 6px; text-decoration: none; font-weight: bold; margin-top: 10px; }
+        .auto-product-btn:hover { background: #16a34a; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Automatska Mreža Video Sadržaja i Reklama</h1>
+        <p>Naj popularniji video zapisi i automatske ponude u realnom vremenu</p>
+    </header>
+
+    <!-- AUTOMATSKA ROTIRAJUĆA REKLAMA -->
+    <a href="#" id="top-ad-link" target="_blank" class="banner-ad">
+        🔥 Učitavanje automatske ponude...
+    </a>
+
+    <!-- GLAVNI MREŽNI FEED (YouTube / TikTok / Facebook automatski sadržaj) -->
+    <div class="feed-grid" id="feed-container">
+        <!-- Automatski će se popuniti iz JavaScript-a -->
+    </div>
+
+    <script>
+        // 1. Liste automatskih reklama / affiliate ponuda
+        const automatskeReklame = [
+            { naslov: "⚡ Specijalni popust na Amazonu! Klikni i pogledaj odmah.", link: "https://amazon.com" },
+            { naslov: "🛍️ Najtraženiji gadgeti na AliExpressu - Besplatna dostava!", link: "https://aliexpress.com" },
+            { naslov: "📱 Najbolje ponude za telefone ove sedmice!", link: "https://example.com" }
+        ];
+
+        // 2. Automatski sadržaj sa društvenih mreža (YouTube Shorts / TikTok / FB)
+        const mrezaSadrzaj = [
+            {
+                naslov: "YouTube Auto Feed - Trend Video #1",
+                embedUrl: "https://www.youtube.com/embed/tgbNymZ7vqY",
+                reklamaProizvod: "Kupi opremu iz videa",
+                reklamaLink: "https://example.com/oprema1"
+            },
+            {
+                naslov: "TikTok Auto Feed - Viralni Video #2",
+                embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", 
+                reklamaProizvod: "Pogledaj povezani proizvod",
+                reklamaLink: "https://example.com/oprema2"
+            }
+        ];
+
+        // Ubacivanje sadržaja na stranicu
+        const feedContainer = document.getElementById('feed-container');
+        mrezaSadrzaj.forEach(item => {
+            feedContainer.innerHTML += `
+                <div class="card">
+                    <h3>${item.naslov}</h3>
+                    <div class="video-container">
+                        <iframe src="${item.embedUrl}" allowfullscreen></iframe>
+                    </div>
+                    <a href="${item.reklamaLink}" target="_blank" class="auto-product-btn">🛒 ${item.reklamaProizvod}</a>
+                </div>
+            `;
+        });
+
+        // Rotator za gornju reklamu na svakih 5 sekundi
+        let adIndex = 0;
+        setInterval(() => {
+            const ad = automatskeReklame[adIndex];
+            const adElement = document.getElementById('top-ad-link');
+            adElement.innerText = ad.naslov;
+            adElement.href = ad.link;
+            adIndex = (adIndex + 1) % automatskeReklame.length;
+        }, 5000);
+    </script>
+
+</body>
+</html>
